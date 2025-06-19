@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Pawnder</string>
+    <string name="temperament_prompt">Select Temperament</string>
+    <string-array name="temperament_array">
+        <item>Select Temperament</item>
+        <item>Playful</item>
+        <item>Calm</item>
+        <item>Energetic</item>
+        <item>Shy</item>
+        <item>Friendly</item>
+    </string-array>
+</resources>
