@@ -27,6 +27,31 @@
             android:minHeight="48dp" />
 
         <EditText
+            android:id="@+id/userEmailField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Your Email"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp" />
+        <ImageView
+            android:id="@+id/userImagePreview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:background="#DDD"
+            android:layout_marginTop="16dp"
+            android:contentDescription="Profile Image Preview" />
+
+        <!-- Upload Button -->
+        <Button
+            android:id="@+id/uploadUserPhotoBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload Profile Photo"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
             android:id="@+id/userAgeField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
