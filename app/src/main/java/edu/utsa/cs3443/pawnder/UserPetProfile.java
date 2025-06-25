@@ -10,7 +10,7 @@ public class UserPetProfile {
     public String userAge;
     public String userLocation;
     public String userBio;
-    public Uri userImageUri;
+    public List<Uri> userImageUris;  // multiple user images
 
     // Pet info
     public String petName;
@@ -20,10 +20,10 @@ public class UserPetProfile {
     public String petTemperament;
     public String petDescription;
     public String petGender;
-    private List<Integer> petPhotos; // Assuming drawable resource IDs
+    private List<Integer> petPhotos; // drawable resource IDs
 
     // Constructor
-    public UserPetProfile(String userName, String userAge, String userLocation, String userBio, Uri userImageUri,
+    public UserPetProfile(String userName, String userAge, String userLocation, String userBio, List<Uri> userImageUris,
                           String petName, String petAge, String petBreed, String petLocation, String petTemperament,
                           String petDescription, String petGender, List<Integer> petPhotos) {
 
@@ -31,7 +31,7 @@ public class UserPetProfile {
         this.userAge = userAge;
         this.userLocation = userLocation;
         this.userBio = userBio;
-        this.userImageUri = userImageUri;
+        this.userImageUris = userImageUris;
 
         this.petName = petName;
         this.petAge = petAge;
@@ -43,7 +43,13 @@ public class UserPetProfile {
         this.petPhotos = petPhotos;
     }
 
+    // Getter for pet photos
     public List<Integer> getPhotos() {
-      return petPhotos;
+        return petPhotos;
+    }
+
+    // Getter for user image URIs
+    public List<Uri> userImageUris() {
+        return userImageUris;
     }
 }

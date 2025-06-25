@@ -10,8 +10,10 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
-import com.bumptech.glide.Glide;
+
+
 
 import java.util.List;
 
@@ -27,28 +29,22 @@ public class PetCardAdapter extends RecyclerView.Adapter<PetCardAdapter.PetViewH
     @NonNull
     @Override
     public PetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(context).inflate(R.layout.item_profile_card, parent, false);
         return new PetViewHolder(view);
     }
 
-    @Override
 
+    @Override
     public void onBindViewHolder(@NonNull PetViewHolder holder, int position) {
         UserPetProfile profile = petList.get(position);
 
-        // --- Pet Info ---
+        // Pet info bindings (your existing code)
         holder.petName.setText(profile.petName + ", " + profile.petAge);
         holder.petBreed.setText(profile.petBreed);
         holder.petLocation.setText(profile.petLocation);
         holder.petTemperament.setText("Temperament: " + profile.petTemperament);
         holder.petDescription.setText(profile.petDescription);
-
-        if (profile.getPhotos() != null && !profile.getPhotos().isEmpty()) {
-            Glide.with(context)
-                    .load(profile.getPhotos().get(0))
-                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(32)))
-                    .into(holder.petImage);
-        }
 
         if (profile.petGender != null) {
             if (profile.petGender.equalsIgnoreCase("Male")) {
@@ -60,17 +56,33 @@ public class PetCardAdapter extends RecyclerView.Adapter<PetCardAdapter.PetViewH
             }
         }
 
-        // --- User Info ---
+        // Pet images adapter
+        if (profile.getPhotos() != null && !profile.getPhotos().isEmpty()) {
+            ImageSliderAdapter petAdapter = new ImageSliderAdapter(context, profile.getPhotos());
+            holder.petImagePager.setAdapter(petAdapter);
+        }
+
+        // User info bindings
         holder.userName.setText(profile.userName + ", " + profile.userAge);
         holder.userLocation.setText(profile.userLocation);
         holder.userBio.setText(profile.userBio);
 
-        if (profile.userImageUri != null) {
-            Glide.with(context)
-                    .load(profile.userImageUri != null ? profile.userImageUri : R.drawable.alex)
-                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(32)))
-                    .into(holder.userImage);
+        // User images adapter
+        if (profile.userImageUris != null && !profile.userImageUris.isEmpty()) {
+            ImageSliderAdapter userAdapter = new ImageSliderAdapter(context, profile.userImageUris, true);
+            holder.userImagePager.setAdapter(userAdapter);
         }
+
+        // ** ADD THESE TOUCH LISTENERS TO LET VIEWPAGER2 HANDLE SWIPES **
+        holder.userImagePager.setOnTouchListener((v, event) -> {
+            holder.itemView.getParent().requestDisallowInterceptTouchEvent(true);
+            return false; // let ViewPager2 handle the touch as usual
+        });
+
+        holder.petImagePager.setOnTouchListener((v, event) -> {
+            holder.itemView.getParent().requestDisallowInterceptTouchEvent(true);
+            return false;
+        });
     }
 
 
@@ -81,10 +93,11 @@ public class PetCardAdapter extends RecyclerView.Adapter<PetCardAdapter.PetViewH
 
     public class PetViewHolder extends RecyclerView.ViewHolder {
         TextView petName, petBreed, petTemperament, petLocation, petDescription;
-        ImageView petImage,petGender;
+        ImageView petGender;
+        ViewPager2 petImagePager;
 
         TextView userName, userLocation, userBio;
-        ImageView userImage;
+        ViewPager2 userImagePager;
 
         public PetViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -95,13 +108,15 @@ public class PetCardAdapter extends RecyclerView.Adapter<PetCardAdapter.PetViewH
             petLocation = itemView.findViewById(R.id.petLocation);
             petTemperament = itemView.findViewById(R.id.petTemperament);
             petDescription = itemView.findViewById(R.id.petDescription);
-            petImage = itemView.findViewById(R.id.petImage);
+            petImagePager = itemView.findViewById(R.id.petImagePager);
 
             // User
+            userImagePager = itemView.findViewById(R.id.userImagePager);
             userName = itemView.findViewById(R.id.userName);
             userLocation = itemView.findViewById(R.id.userLocation);
             userBio = itemView.findViewById(R.id.userBio);
-            userImage = itemView.findViewById(R.id.userImage);
+            userImagePager = itemView.findViewById(R.id.userImagePager);
         }
     }
+
 }

@@ -19,7 +19,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- User Section -->
+            <!-- User Info -->
             <TextView
                 android:text="User Info"
                 android:textStyle="bold"
@@ -29,30 +29,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/userImage"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/userImagePager"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/alex"
-                app:shapeAppearanceOverlay="@style/RoundedCornerImage" />
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:clipChildren="false"
+                android:clipToPadding="false" />
 
-            <TextView android:id="@+id/userName"
+            <TextView
+                android:id="@+id/userName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Alex, 25"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView android:id="@+id/userLocation"
+            <TextView
+                android:id="@+id/userLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Austin, TX"
                 android:textSize="16sp"
                 android:textColor="#555" />
 
-            <TextView android:id="@+id/userBio"
+            <TextView
+                android:id="@+id/userBio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -66,7 +68,7 @@
                 android:background="#CCCCCC"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Pet Section -->
+            <!-- Pet Info -->
             <TextView
                 android:text="Pet Info"
                 android:textStyle="bold"
@@ -76,13 +78,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/petImage"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/petImagePager"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/RoundedCornerImage" />
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:clipToPadding="false"
+                android:clipChildren="false" />
 
             <ImageView
                 android:id="@+id/petGender"
@@ -92,35 +94,40 @@
                 android:contentDescription="Pet Gender Icon"
                 android:src="@drawable/male" />
 
-            <TextView android:id="@+id/petName"
+            <TextView
+                android:id="@+id/petName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Buddy, 3"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView android:id="@+id/petBreed"
+            <TextView
+                android:id="@+id/petBreed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Golden Retriever"
                 android:textSize="16sp"
                 android:textColor="#555" />
 
-            <TextView android:id="@+id/petLocation"
+            <TextView
+                android:id="@+id/petLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Austin, TX"
                 android:textSize="16sp"
                 android:textColor="#555" />
 
-            <TextView android:id="@+id/petTemperament"
+            <TextView
+                android:id="@+id/petTemperament"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Temperament: Friendly"
                 android:textSize="15sp"
                 android:textColor="#777" />
 
-            <TextView android:id="@+id/petDescription"
+            <TextView
+                android:id="@+id/petDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"

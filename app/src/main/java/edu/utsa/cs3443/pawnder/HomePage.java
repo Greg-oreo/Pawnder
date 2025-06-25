@@ -18,7 +18,7 @@ public class HomePage extends AppCompatActivity {
         createProfileButton = findViewById(R.id.button_create_profile);
 
         createProfileButton.setOnClickListener(v -> {
-            Intent intent = new Intent(HomePage.this, CreateProfileActivity.class);
+            Intent intent = new Intent(HomePage.this, SwipeActivity.class);
             startActivity(intent);
         });
     }
